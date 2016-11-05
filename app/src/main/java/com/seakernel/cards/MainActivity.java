@@ -2,6 +2,7 @@ package com.seakernel.cards;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             holder.nameView.setText(card.getName());
             holder.xpView.setText(String.valueOf(card.getXpValue()));
             holder.descriptionView.setText(card.getDescription());
+            holder.cardBackground.setCardBackgroundColor(card.getTypeColor(holder.itemView.getContext()));
         }
 
         @Override
@@ -100,10 +102,12 @@ public class MainActivity extends AppCompatActivity {
         TextView xpView;
         TextView nameView;
         TextView descriptionView;
+        CardView cardBackground;
 
         CardViewHolder(View itemView) {
             super(itemView);
 
+            cardBackground = (CardView) itemView;
             xpView = (TextView) itemView.findViewById(R.id.holder_card_xp);
             nameView = (TextView) itemView.findViewById(R.id.holder_card_name);
             descriptionView = (TextView) itemView.findViewById(R.id.holder_card_description);

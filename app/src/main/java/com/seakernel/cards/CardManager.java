@@ -7,18 +7,26 @@ import java.util.List;
  * Created by Calvin on 11/3/2016.
  */
 
+@SuppressWarnings("WeakerAccess")
 public class CardManager {
 
-    private static final int DECK_SIZE = 40;
+    // Card counts
+    private static final int NUM_CARDS_MELEE = 12;
+    private static final int NUM_CARDS_DEFENSE = 15;
+    private static final int NUM_CARDS_SPELL = 11;
+    private static final int NUM_CARDS_EQUIPMENT = 11;
+    private static final int NUM_CARDS_ENEMY = 11;
+    private static final int DECK_SIZE = NUM_CARDS_MELEE + NUM_CARDS_DEFENSE + NUM_CARDS_SPELL + NUM_CARDS_EQUIPMENT + NUM_CARDS_ENEMY;
+
     private static final int SHUFFLE_COUNT = 7;
 
     /**
-     * Generates a list of cards
-     * @return
+     * @return a generated a list of cards
      */
     public static List<Card> getCards() {
         List<Card> cards = new ArrayList<>();
 
+        // Create a new card until we've reached the DECK_SIZE
         for (int i = 0; i < DECK_SIZE; i++) {
             cards.add(createCard(i + 1));
         }
@@ -32,7 +40,37 @@ public class CardManager {
      * @param cardNumber the card number to determine card type
      */
     private static Card createCard(int cardNumber) {
-        return new Card(null, null, cardNumber);
+        if (cardNumber < NUM_CARDS_MELEE) {
+            return createCardMelee(cardNumber);
+        } else if (cardNumber < NUM_CARDS_MELEE + NUM_CARDS_DEFENSE) {
+            return createCardDefense(cardNumber);
+        } else if (cardNumber < NUM_CARDS_MELEE + NUM_CARDS_DEFENSE + NUM_CARDS_SPELL) {
+            return createCardSpell(cardNumber);
+        } else if (cardNumber < NUM_CARDS_MELEE + NUM_CARDS_DEFENSE + NUM_CARDS_SPELL + NUM_CARDS_EQUIPMENT) {
+            return createCardEquipment(cardNumber);
+        } else {
+            return createCardEnemy(cardNumber);
+        }
+    }
+
+    private static Card createCardMelee(int cardNumber) {
+        return new Card("Default Name: Melee", null, cardNumber, Card.Type.MELEE);
+    }
+
+    private static Card createCardDefense(int cardNumber) {
+        return new Card("Default Name: Defense", null, cardNumber, Card.Type.DEFENSE);
+    }
+
+    private static Card createCardSpell(int cardNumber) {
+        return new Card("Default Name: Spell", null, cardNumber, Card.Type.SPELL);
+    }
+
+    private static Card createCardEquipment(int cardNumber) {
+        return new Card("Default Name: Equipment", null, cardNumber, Card.Type.EQUIPMENT);
+    }
+
+    private static Card createCardEnemy(int cardNumber) {
+        return new Card("Default Name: Enemy", null, cardNumber, Card.Type.ENEMY);
     }
 
     /**
