@@ -20,7 +20,7 @@
             >
 
             <TextView
-                android:id="@+id/holder_card_xp"
+                android:id="@+id/holder_card_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/default_padding"

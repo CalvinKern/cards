@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             Card card = mCards.get(position);
 
             holder.nameView.setText(card.getName());
-            holder.xpView.setText(String.valueOf(card.getXpValue()));
+            holder.numberView.setText(String.valueOf(card.getCardNumber()));
             holder.descriptionView.setText(card.getDescription());
             holder.cardBackground.setCardBackgroundColor(card.getTypeColor(holder.itemView.getContext()));
         }
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public long getItemId(int position) {
-            return mCards.get(position).getXpValue();
+            return mCards.get(position).getCardNumber();
         }
 
         /**
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static class CardViewHolder extends RecyclerView.ViewHolder {
 
-        TextView xpView;
+        TextView numberView;
         TextView nameView;
         TextView descriptionView;
         CardView cardBackground;
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             super(itemView);
 
             cardBackground = (CardView) itemView;
-            xpView = (TextView) itemView.findViewById(R.id.holder_card_xp);
+            numberView = (TextView) itemView.findViewById(R.id.holder_card_number);
             nameView = (TextView) itemView.findViewById(R.id.holder_card_name);
             descriptionView = (TextView) itemView.findViewById(R.id.holder_card_description);
         }

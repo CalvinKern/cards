@@ -54,23 +54,23 @@ public class CardManager {
     }
 
     private static Card createCardMelee(int cardNumber) {
-        return new Card("Default Name: Melee", null, cardNumber, Card.Type.MELEE);
+        return new Card("Default Name: Melee", null, 2, Card.Type.MELEE);
     }
 
     private static Card createCardDefense(int cardNumber) {
-        return new Card("Default Name: Defense", null, cardNumber, Card.Type.DEFENSE);
+        return new Card("Default Name: Defense", null, 1, Card.Type.DEFENSE);
     }
 
     private static Card createCardSpell(int cardNumber) {
-        return new Card("Default Name: Spell", null, cardNumber, Card.Type.SPELL);
+        return new Card("Default Name: Spell", null, 3, Card.Type.SPELL);
     }
 
     private static Card createCardEquipment(int cardNumber) {
-        return new Card("Default Name: Equipment", null, cardNumber, Card.Type.EQUIPMENT);
+        return new Card("Default Name: Equipment", null, 2, Card.Type.EQUIPMENT);
     }
 
     private static Card createCardEnemy(int cardNumber) {
-        return new Card("Default Name: Enemy", null, cardNumber, Card.Type.ENEMY);
+        return new Card("Default Name: Enemy", null, 4, Card.Type.ENEMY);
     }
 
     /**
@@ -80,16 +80,21 @@ public class CardManager {
      * @return the copied list shuffled
      */
     public static List<Card> shuffleCards(List<Card> cardList) {
+        // Setup
         List<Card> cards = new ArrayList<>(cardList);
         Card temp;
         int randIndex;
         int size = cards.size();
 
+        // Shuffle by the SHUFFLE_COUNT to get a "perfect" shuffle
         for (int countDown = 0; countDown < SHUFFLE_COUNT; countDown++) {
+            // Do a simple swap at each index with a random index to shuffle the cards
             for (int i = 0; i < size; i++) {
+                // Get necessary variables
                 temp = cards.get(i);
                 randIndex = (int) (Math.random() * size);
 
+                // Swap the two cards
                 cards.set(i, cards.get(randIndex));
                 cards.set(randIndex, temp);
             }
